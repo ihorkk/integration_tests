@@ -16,7 +16,7 @@ Ensure the following tools are installed in your development environment:
 Clone the repository and install the necessary dependencies:
 
 ```bash
-git clone https://github.com/yourusername/integration_tests.git
+git clone https://github.com/ihorkk/integration_tests.git
 cd integration_tests
 npm install
 
@@ -28,7 +28,7 @@ There are three ways you can run the tests, depending on your setup.
 
 ### 1. Using the Remote ServeRest API
 
-To run these tests on the instance hosted remotely, simply change the URL inside the common.ts file to https://serverest.dev.
+To run these tests on the remotely hosted instance, simply uncomment the corresponding BASE_URL inside the .env file.
 Then run the following command:
 
 ```bash
@@ -37,7 +37,8 @@ npm run test:integration
 
 ### 2. Running ServeRest Locally
 
-By default, the tests are configured to target the ServeRest instance hosted remotely. To run these tests, run the Serverest application locally and execute the tests.
+To run these tests locally, simply uncomment the corresponding BASE_URL inside the .env file.
+Then run the following commands:
 
 ```bash
 npm run run:locally
@@ -46,7 +47,7 @@ npm run test:integration
 
 ### 3. Running ServeRest in Docker
 
-To run ServeRest and the tests inside Docker containers, the project uses `docker-compose`. The `run-tests.sh` script will build and run the Docker containers, execute the tests, and then clean up the environment.
+By default, the tests are configured to execute against the ServeRest instance running inside Docker containers. The project uses docker-compose to manage the containers for both ServeRest and the test environment. The run-tests.sh script will build and run the Docker containers, execute the tests, and then clean up the environment.
 
 First, ensure that Docker and Docker Compose are installed on your system. Then, to start the tests inside Docker, use the following command:
 

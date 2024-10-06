@@ -1,8 +1,8 @@
 import request from "supertest";
-import { baseUrl } from "../../../../common";
+import { BASE_URL } from "../../../../constants";
 
 export async function completePurchase(token: string) {
-  return request(baseUrl).delete("/carrinhos/concluir-compra").set({
+  return request(BASE_URL).delete("/carrinhos/concluir-compra").set({
     Authorization: token,
   });
 }

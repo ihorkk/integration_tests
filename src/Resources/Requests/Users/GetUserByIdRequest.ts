@@ -1,6 +1,6 @@
 import request from "supertest";
-import { baseUrl } from "../../../../common";
+import { BASE_URL } from "../../../../constants";
 
 export async function getUserById(userId: string) {
-  return request(baseUrl).get(`/usuarios/${userId}`);
+  return request(BASE_URL).get(`/usuarios/${userId}`);
 }

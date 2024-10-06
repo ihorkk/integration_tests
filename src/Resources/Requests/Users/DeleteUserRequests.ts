@@ -1,6 +1,6 @@
 import request from "supertest";
-import { baseUrl } from "../../../../common";
+import { BASE_URL } from "../../../../constants";
 
 export async function deleteUser(userId: string) {
-  return request(baseUrl).delete(`/usuarios/${userId}`);
+  return request(BASE_URL).delete(`/usuarios/${userId}`);
 }

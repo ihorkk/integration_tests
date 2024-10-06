@@ -1,8 +1,8 @@
 import request from "supertest";
-import { baseUrl } from "../../../../common";
+import { BASE_URL } from "../../../../constants";
 
 export async function deleteProduct(productId: string, token: string) {
-  return request(baseUrl).delete(`/produtos/${productId}`).set({
+  return request(BASE_URL).delete(`/produtos/${productId}`).set({
     Authorization: token,
   });
 }

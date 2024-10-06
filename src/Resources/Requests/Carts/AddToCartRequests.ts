@@ -1,12 +1,12 @@
 import request from "supertest";
-import { baseUrl } from "../../../../common";
+import { BASE_URL } from "../../../../constants";
 import * as requestBody from "../../../Objects/Carts/AddToCartRequestBody";
 
 export async function addToCart(
   addToCart: requestBody.AddToCartRequestBody,
   token: string
 ) {
-  return request(baseUrl).post("/carrinhos").send(addToCart).set({
+  return request(BASE_URL).post("/carrinhos").send(addToCart).set({
     Authorization: token,
   });
 }
