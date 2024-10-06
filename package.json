@@ -9,10 +9,10 @@
         "test:integration:silent": "npm run lint && jest --silent",
         "run:locally": "npx serverest@latest",
         "run:docker": "docker run -p 3000:3000 paulogoncalvesbh/serverest:latest",
-        "test:docker": "./run-tests.sh",
+        "test:docker": "run-tests.sh",
         "lint": "eslint .",
         "lint:fix": "eslint --fix .",
-        "open:report": "open ./results/jest-stare/index.html"
+        "open:report": "start ./results/jest-stare/index.html"
     },
     "jest": {
         "reporters": [
