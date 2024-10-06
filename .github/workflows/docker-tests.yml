@@ -31,6 +31,9 @@ jobs:
             - name: Install dependencies
               run: npm install
 
+            - name: Make run-tests.sh executable
+              run: chmod +x run-tests.sh
+
             - name: Run tests in Docker
               run: npm run test:docker
 
