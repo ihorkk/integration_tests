@@ -1,4 +1,4 @@
-name: Run Integration Tests in Docker
+name: CI
 
 on:
     push:
@@ -9,30 +9,41 @@ on:
             - main
 
 jobs:
-    test:
+    build-and-test:
         runs-on: ubuntu-latest
 
+        services:
+            docker:
+                image: docker:19.03.12
+                options: --privileged
+                ports:
+                    - 3000:3000
+
         steps:
-            - name: Checkout repository
-              uses: actions/checkout@v3
+            - name: Checkout code
+              uses: actions/checkout@v2
 
             - name: Set up Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v2
               with:
                   node-version: "18"
 
-            - name: Install Docker
-              run: |
-                  sudo apt-get update
-                  sudo apt-get install -y docker.io docker-compose
-                  sudo systemctl start docker
-                  sudo systemctl enable docker
+            - name: Install dependencies
+              run: npm install
 
-            - name: Run Docker tests
-              run: |
-                  chmod +x ./run-tests.sh
-                  ./run-tests.sh
+            - name: Run tests in Docker
+              run: npm run test:docker
 
-            - name: Tear down Docker containers
+            - name: Archive test results
               if: always()
-              run: docker-compose down
+              uses: actions/upload-artifact@v2
+              with:
+                  name: test-results
+                  path: results/jest-stare
+
+            - name: Archive coverage results
+              if: always()
+              uses: actions/upload-artifact@v2
+              with:
+                  name: coverage-results
+                  path: coverage
